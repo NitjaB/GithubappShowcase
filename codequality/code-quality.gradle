@@ -1,0 +1,49 @@
+configurations {
+    detekt
+}
+
+tasks.register("detekt", JavaExec) {
+    mainClass = "io.gitlab.arturbosch.detekt.cli.Main"
+    classpath = configurations.detekt
+
+    def input = "$projectDir"
+    def config = "$rootDir/codequality/detekt.yml"
+    def exclude = "**/build/**,.*/resources/.*"
+    def params = ['-i', input, '-c', config, '-ex', exclude]
+
+    args(params)
+}
+
+dependencies {
+    detekt libs.detekt.cli
+}
+
+configurations {
+    ktlint
+}
+
+dependencies {
+    ktlint (libs.ktlint) {
+        attributes {
+            attribute(Bundling.BUNDLING_ATTRIBUTE, getObjects().named(Bundling, Bundling.EXTERNAL))
+        }
+    }
+}
+
+tasks.register('ktlintCheck', JavaExec) {
+    description = "Check Kotlin code style."
+    classpath = configurations.ktlint
+    mainClass = "com.pinterest.ktlint.Main"
+    // Fixes a known ktlint issue https://github.com/pinterest/ktlint/issues/1195
+    jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
+    args("src/**/*.kt", "--editorconfig=.editorconfig", "--experimental")
+}
+
+tasks.register('ktlintFormat', JavaExec) {
+    description = "Fix Kotlin code style deviations."
+    classpath = configurations.ktlint
+    mainClass = "com.pinterest.ktlint.Main"
+    // Fixes a known ktlint issue https://github.com/pinterest/ktlint/issues/1195
+    jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
+    args("-F", "src/**/*.kt", "--editorconfig=.editorconfig", "--experimental")
+}

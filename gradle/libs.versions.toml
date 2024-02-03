@@ -5,9 +5,13 @@ targetSdk = "34"
 androidGradlePlugin = "8.2.2"
 kotlin = "1.9.10"
 androidxAppCompat = "1.6.1"
+ktlint = "0.50.0"
+detekt = '1.23.1'
 
 [libraries]
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
+detekt-cli = { group = "io.gitlab.arturbosch.detekt", name = "detekt-cli", version.ref = "detekt" }
+ktlint = { group = "com.pinterest", name = "ktlint", version.ref = "ktlint" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
