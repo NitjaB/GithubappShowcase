@@ -32,8 +32,22 @@ android {
             jvmTarget = "17"
         }
     }
+
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
+    }
 }
 
 dependencies {
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.compose.activity)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.ui.tooling.preview)
 }
