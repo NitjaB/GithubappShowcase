@@ -15,6 +15,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.githubapp.core.components.GithubappNavigationMenu
 import com.example.githubapp.core.navigation.BottomNavigationItem
 import com.example.githubapp.core.components.GithubappBottomNavigationItem
+import com.example.githubapp.feature.search.SearchScreen
+import com.example.githubapp.feature.search.navigation.SearchScreenRouter
 
 @Composable
 fun HomeScreen() {
@@ -45,13 +47,7 @@ fun HomeScreen() {
                             .padding(innerPadding)
                     ) { Text(text = "Home!") }
                 }
-                composable("search") {
-                    Box(
-                        Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding)
-                    ) { Text(text = "Search!") }
-                }
+                composable(SearchScreenRouter.route()) { SearchScreen(innerPadding) }
                 composable("profile") {
                     Box(
                         Modifier

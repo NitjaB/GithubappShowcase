@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.githubapp.R
+import com.example.githubapp.feature.search.navigation.SearchScreenRouter
 
 sealed class BottomNavigationItem(
     @StringRes val label: Int,
@@ -22,7 +23,7 @@ sealed class BottomNavigationItem(
     private data object Search : BottomNavigationItem(
         R.string.home_screen_search_bottom_tab_label,
         Icons.Filled.Search,
-        "search"
+        SearchScreenRouter.route()
     )
 
     private data object Profile : BottomNavigationItem(
