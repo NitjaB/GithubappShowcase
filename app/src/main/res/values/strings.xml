@@ -7,4 +7,6 @@
     <string name="home_screen_first_bottom_tab_label">Home</string>
     <string name="home_screen_search_bottom_tab_label">Search</string>
     <string name="home_screen_profile_bottom_tab_label">Profile</string>
+
+    <string name="search_screen_search_bar_placeholder">Search repos</string>
 </resources>
