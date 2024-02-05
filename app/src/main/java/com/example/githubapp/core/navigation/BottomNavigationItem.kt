@@ -1,0 +1,42 @@
+package com.example.githubapp.core.navigation
+
+import androidx.annotation.StringRes
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.githubapp.R
+
+sealed class BottomNavigationItem(
+    @StringRes val label: Int,
+    val icon: ImageVector,
+    val route: String
+) {
+    private data object Home : BottomNavigationItem(
+        R.string.home_screen_first_bottom_tab_label,
+        Icons.Filled.Home,
+        "home"
+    )
+
+    private data object Search : BottomNavigationItem(
+        R.string.home_screen_search_bottom_tab_label,
+        Icons.Filled.Search,
+        "search"
+    )
+
+    private data object Profile : BottomNavigationItem(
+        R.string.home_screen_profile_bottom_tab_label,
+        Icons.Filled.Person,
+        "profile"
+    )
+
+    companion object {
+        val HOME_NAVIGATION_ITEMS = listOf(
+            Home,
+            Search,
+            Profile,
+        )
+    }
+}
+

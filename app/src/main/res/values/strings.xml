@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Githubapp</string>
+
+    <string name="default_image_content_description"/>
+    <string name="default_icon_content_description"/>
+
+    <string name="home_screen_first_bottom_tab_label">Home</string>
+    <string name="home_screen_search_bottom_tab_label">Search</string>
+    <string name="home_screen_profile_bottom_tab_label">Profile</string>
 </resources>
