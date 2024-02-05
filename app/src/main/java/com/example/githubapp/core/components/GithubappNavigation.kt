@@ -10,12 +10,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.githubapp.HelloScreen
 import com.example.githubapp.core.navigation.NavigationEvent.NavigateUp
 import com.example.githubapp.core.navigation.NavigationEvent.NavigateBack
 import com.example.githubapp.core.navigation.NavigationEvent.Destination
 import com.example.githubapp.core.navigation.NavigationEvent.OpenExternalDestination
 import com.example.githubapp.core.navigation.Navigator
+import com.example.githubapp.feature.home.HomeScreen
+import com.example.githubapp.feature.home.navigation.HomeScreenRouter
 
 @Composable
 fun GithubappNavigation(
@@ -43,7 +44,7 @@ fun GithubappNavigation(
             startDestination = "home",
             modifier = Modifier.padding(innerPadding),
         ) {
-            composable("home") { HelloScreen() }
+            composable(HomeScreenRouter.route()) { HomeScreen() }
         }
     }
 }
