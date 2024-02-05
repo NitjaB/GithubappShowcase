@@ -1,5 +1,10 @@
 package com.example.githubapp.feature.search.viewmodel
 
-import androidx.lifecycle.ViewModel
+import com.example.githubapp.core.base.BaseViewModel
+import com.example.githubapp.feature.search.model.SearchScreenEvent
 
-class SearchViewModel : ViewModel()
+class SearchViewModel : BaseViewModel<SearchScreenEvent>() {
+    override fun onEvent(event: SearchScreenEvent) {
+        // TODO
+    }
+}
