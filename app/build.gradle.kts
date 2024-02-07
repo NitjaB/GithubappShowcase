@@ -57,6 +57,12 @@ dependencies {
     implementation (libs.hilt.android)
     kapt (libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.jakson)
+    implementation(libs.jakson.core)
+    implementation(libs.jakson.kotlin)
     debugImplementation(libs.chucker)
     releaseImplementation(libs.chucker.noOp)
 }

@@ -11,6 +11,9 @@ composeCompiler = "1.5.4"
 compose = "1.6.0"
 compsoseMaterial3 = "1.1.2"
 timber = "5.0.1"
+okHttp = "4.12.0"
+retrofit = "2.9.0"
+jakson = "2.16.0"
 chucker = "4.0.0"
 ktlint = "0.50.0"
 detekt = '1.23.1'
@@ -32,6 +35,12 @@ chucker-noOp = { module = "com.github.chuckerteam.chucker:library-no-op", versio
 detekt-cli = { group = "io.gitlab.arturbosch.detekt", name = "detekt-cli", version.ref = "detekt" }
 ktlint = { group = "com.pinterest", name = "ktlint", version.ref = "ktlint" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okHttp" }
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttp" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-jakson = { group = "com.squareup.retrofit2", name = "converter-jackson", version.ref = "retrofit" }
+jakson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jakson" }
+jakson-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "jakson" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
