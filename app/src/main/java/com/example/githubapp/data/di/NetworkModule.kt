@@ -4,6 +4,7 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.githubapp.BuildConfig
+import com.example.githubapp.data.api.SearchApi
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import dagger.Module
@@ -72,4 +73,8 @@ class NetworkModule {
         .client(httpClient)
         .addConverterFactory(JacksonConverterFactory.create(parser))
         .build()
+
+    @Provides
+    @Singleton
+    fun provideSearchApi(retrofit: Retrofit): SearchApi = retrofit.create(SearchApi::class.java)
 }
