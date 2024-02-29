@@ -3,7 +3,7 @@ package com.example.githubapp.domain.search.paggination
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.githubapp.domain.models.PagedData
-import com.example.githubapp.domain.models.Repository
+import com.example.githubapp.domain.search.models.Repository
 
 class SearchPagingSource(
     private val source: suspend (page: Int) -> Result<PagedData<Repository>>,
