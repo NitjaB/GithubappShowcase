@@ -3,6 +3,7 @@ package com.example.githubapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.githubapp.core.components.GithubappNavigation
 import com.example.githubapp.core.navigation.Navigator
 import com.example.githubapp.designSystem.theme.GithubAppTheme
@@ -16,6 +17,7 @@ class MainActivity : ComponentActivity() {
     lateinit var navigator: Navigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
             GithubAppTheme {

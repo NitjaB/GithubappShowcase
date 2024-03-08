@@ -4,6 +4,7 @@ compileSdk = "34"
 targetSdk = "34"
 androidGradlePlugin = "8.2.2"
 kotlin = "1.9.20"
+splashScreen = "1.0.1"
 hilt = "2.48"
 hilt-navigation-compose = "1.1.0"
 androidxAppCompat = "1.6.1"
@@ -42,6 +43,7 @@ okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okHtt
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttp" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-jakson = { group = "com.squareup.retrofit2", name = "converter-jackson", version.ref = "retrofit" }
+androidx-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashScreen" }
 jakson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jakson" }
 jakson-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "jakson" }
 
