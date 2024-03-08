@@ -10,6 +10,7 @@ hilt-navigation-compose = "1.1.0"
 androidxAppCompat = "1.6.1"
 coil = "2.5.0"
 composeCompiler = "1.5.4"
+pagging = "3.2.1"
 compose = "1.6.0"
 compsoseMaterial3 = "1.1.2"
 timber = "5.0.1"
@@ -22,6 +23,8 @@ detekt = '1.23.1'
 
 [libraries]
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
+androidx-pagging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "pagging" }
+androidx-pagging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagging" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
 androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "compose" }
