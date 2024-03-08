@@ -51,6 +51,7 @@ android {
 dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.splashscreen)
     implementation(libs.androidx.compose.activity)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.foundation)
