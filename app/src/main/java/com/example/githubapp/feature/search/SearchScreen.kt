@@ -1,6 +1,5 @@
 package com.example.githubapp.feature.search
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +10,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.githubapp.feature.search.components.RepositoryList
 import com.example.githubapp.feature.search.components.SearchBar
 import com.example.githubapp.feature.search.model.SearchScreenEvent.onOpenFiltersClicked
 import com.example.githubapp.feature.search.model.SearchScreenEvent.onSearchTextChanged
@@ -24,7 +25,9 @@ fun SearchScreen(
 
     val state by viewModel.state.collectAsState()
 
-    Box(
+    val repositories = state.repositories.collectAsLazyPagingItems()
+
+    Column(
         Modifier
             .padding(innerPadding)
             .padding(top = 16.dp)
@@ -35,6 +38,10 @@ fun SearchScreen(
             onTextChange = { text -> viewModel.onEvent(onSearchTextChanged(text)) },
             onConfigureClicked = { viewModel.onEvent(onOpenFiltersClicked) },
             modifier = Modifier.padding(bottom = 4.dp)
+        )
+        RepositoryList(
+            repositories = repositories,
+            modifier = Modifier.weight(1f, true),
         )
     }
 }
