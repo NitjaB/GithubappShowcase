@@ -4,6 +4,7 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.githubapp.BuildConfig
+import com.example.githubapp.data.ApiConstants
 import com.example.githubapp.data.api.SearchApi
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
@@ -19,9 +20,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
-
-
-private const val BASE_GIT_HUB_API_URL = "https://api.github.com/"
 
 private const val CONNECTION_TIMEOUT_IN_MINUTES = 1L
 
@@ -69,7 +67,7 @@ class NetworkModule {
         httpClient: OkHttpClient,
         parser: ObjectMapper
     ): Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_GIT_HUB_API_URL)
+        .baseUrl(ApiConstants.BASE_DATA_API_URL)
         .client(httpClient)
         .addConverterFactory(JacksonConverterFactory.create(parser))
         .build()
