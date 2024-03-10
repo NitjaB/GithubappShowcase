@@ -17,6 +17,8 @@ import com.example.githubapp.core.navigation.NavigationEvent.OpenExternalDestina
 import com.example.githubapp.core.navigation.Navigator
 import com.example.githubapp.feature.home.HomeScreen
 import com.example.githubapp.feature.home.navigation.HomeScreenRouter
+import com.example.githubapp.feature.login.LoginScreen
+import com.example.githubapp.feature.login.navigation.LoginScreenRouter
 
 @Composable
 fun GithubappNavigation(
@@ -45,6 +47,7 @@ fun GithubappNavigation(
             modifier = Modifier.padding(innerPadding),
         ) {
             composable(HomeScreenRouter.route()) { HomeScreen() }
+            composable(LoginScreenRouter.route()) { LoginScreen() }
         }
     }
 }
