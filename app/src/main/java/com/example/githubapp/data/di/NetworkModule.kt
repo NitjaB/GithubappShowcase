@@ -5,6 +5,7 @@ import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.githubapp.BuildConfig
 import com.example.githubapp.data.ApiConstants
+import com.example.githubapp.data.api.CredentialsApi
 import com.example.githubapp.data.api.SearchApi
 import com.example.githubapp.data.interceptors.JsonAcceptHeaderInterceptor
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -112,4 +113,9 @@ class NetworkModule {
     @Singleton
     fun provideSearchApi(@Named(DATA) retrofit: Retrofit): SearchApi =
         retrofit.create(SearchApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideCredentialsApi(@Named(DATA) retrofit: Retrofit): CredentialsApi =
+        retrofit.create(CredentialsApi::class.java)
 }
