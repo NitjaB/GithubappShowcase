@@ -7,6 +7,7 @@ import com.example.githubapp.BuildConfig
 import com.example.githubapp.data.ApiConstants
 import com.example.githubapp.data.api.CredentialsApi
 import com.example.githubapp.data.api.SearchApi
+import com.example.githubapp.data.interceptors.AuthTokenHeaderInterceptor
 import com.example.githubapp.data.interceptors.JsonAcceptHeaderInterceptor
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
@@ -66,6 +67,7 @@ class NetworkModule {
     @Named(CREDENTIALS)
     fun provideCredentialsOkHttpClient(
         jsonAcceptHeaderInterceptor: JsonAcceptHeaderInterceptor,
+        authTokenHeaderInterceptor: AuthTokenHeaderInterceptor,
         checkerInterceptor: ChuckerInterceptor,
     ) =
         OkHttpClient.Builder().apply {
@@ -78,6 +80,7 @@ class NetworkModule {
             }
             addInterceptor(checkerInterceptor)
             addNetworkInterceptor(jsonAcceptHeaderInterceptor)
+            addNetworkInterceptor(authTokenHeaderInterceptor)
             connectTimeout(CONNECTION_TIMEOUT_IN_MINUTES, TimeUnit.MINUTES)
         }.build()
 
