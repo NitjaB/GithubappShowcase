@@ -10,9 +10,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.githubapp.core.navigation.NavigationEvent.NavigateUp
-import com.example.githubapp.core.navigation.NavigationEvent.NavigateBack
 import com.example.githubapp.core.navigation.NavigationEvent.Destination
+import com.example.githubapp.core.navigation.NavigationEvent.NavigateBack
+import com.example.githubapp.core.navigation.NavigationEvent.NavigateUp
 import com.example.githubapp.core.navigation.NavigationEvent.OpenExternalDestination
 import com.example.githubapp.core.navigation.Navigator
 import com.example.githubapp.feature.home.HomeScreen
@@ -24,6 +24,7 @@ import com.example.githubapp.feature.login.navigation.LoginScreenRouter
 fun GithubappNavigation(
     navigator: Navigator,
     navController: NavHostController = rememberNavController(),
+    startScreen: Destination,
 ) {
     val context = LocalContext.current
     LaunchedEffect(key1 = Unit) {
@@ -43,7 +44,7 @@ fun GithubappNavigation(
     Scaffold { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "home",
+            startDestination = startScreen.destination,
             modifier = Modifier.padding(innerPadding),
         ) {
             composable(HomeScreenRouter.route()) { HomeScreen() }
