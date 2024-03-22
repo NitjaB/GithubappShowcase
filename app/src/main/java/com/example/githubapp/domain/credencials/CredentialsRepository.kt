@@ -10,4 +10,6 @@ class CredentialsRepository @Inject constructor(
 
     suspend fun login(code: String) =
         datasource.authenticateUser(code).toResult {}
+
+    fun isUserLoggedIn() = datasource.getAccessToken() != null
 }
