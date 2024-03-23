@@ -14,14 +14,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.githubapp.R
 import com.example.githubapp.core.components.GithubAppLabel
 import com.example.githubapp.designSystem.theme.Typography
 import com.example.githubapp.designSystem.theme.green
 import com.example.githubapp.designSystem.theme.lightBlue
+import com.example.githubapp.feature.overview.models.OverviewScreenEvents
+import com.example.githubapp.feature.overview.viewmodel.OverviewViewModel
 
 @Composable
 fun OverviewScreen(
+    viewModel: OverviewViewModel = hiltViewModel(),
     paddingValues: PaddingValues,
 ) {
     Column(
@@ -40,13 +44,17 @@ fun OverviewScreen(
             label = stringResource(R.string.issues),
             indicator = R.drawable.ic_issues,
             indicatorBackground = green,
-            modifier = Modifier.clickable {}
+            modifier = Modifier.clickable {
+                viewModel.onEvent(OverviewScreenEvents.OnIssuesClicked)
+            }
         )
         GithubAppLabel(
             label = stringResource(R.string.pull_requests),
             indicator = R.drawable.ic_pull_requests,
             indicatorBackground = lightBlue,
-            modifier = Modifier.clickable {}
+            modifier = Modifier.clickable {
+                viewModel.onEvent(OverviewScreenEvents.OnIssuesClicked)
+            }
         )
     }
 }
