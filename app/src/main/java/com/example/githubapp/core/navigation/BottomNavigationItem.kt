@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.githubapp.R
+import com.example.githubapp.feature.overview.navigation.OverviewScreenRouter
 import com.example.githubapp.feature.search.navigation.SearchScreenRouter
 
 sealed class BottomNavigationItem(
@@ -17,7 +18,7 @@ sealed class BottomNavigationItem(
     private data object Home : BottomNavigationItem(
         R.string.home_screen_first_bottom_tab_label,
         Icons.Filled.Home,
-        "home"
+        OverviewScreenRouter.route(),
     )
 
     private data object Search : BottomNavigationItem(
