@@ -6,6 +6,7 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.githubapp.BuildConfig
 import com.example.githubapp.data.ApiConstants
 import com.example.githubapp.data.api.CredentialsApi
+import com.example.githubapp.data.api.ProfileApi
 import com.example.githubapp.data.api.SearchApi
 import com.example.githubapp.data.interceptors.AuthTokenHeaderInterceptor
 import com.example.githubapp.data.interceptors.JsonAcceptHeaderInterceptor
@@ -48,7 +49,8 @@ class NetworkModule {
     @Singleton
     @Named(DATA)
     fun provideDataOkHttpClient(
-        chuckerInterceptor: ChuckerInterceptor
+        chuckerInterceptor: ChuckerInterceptor,
+        authTokenHeaderInterceptor: AuthTokenHeaderInterceptor,
     ) =
         OkHttpClient.Builder().apply {
             if (BuildConfig.DEBUG) {
@@ -59,6 +61,7 @@ class NetworkModule {
                 )
             }
             addInterceptor(chuckerInterceptor)
+            addNetworkInterceptor(authTokenHeaderInterceptor)
             connectTimeout(CONNECTION_TIMEOUT_IN_MINUTES, TimeUnit.MINUTES)
         }.build()
 
@@ -67,7 +70,6 @@ class NetworkModule {
     @Named(CREDENTIALS)
     fun provideCredentialsOkHttpClient(
         jsonAcceptHeaderInterceptor: JsonAcceptHeaderInterceptor,
-        authTokenHeaderInterceptor: AuthTokenHeaderInterceptor,
         checkerInterceptor: ChuckerInterceptor,
     ) =
         OkHttpClient.Builder().apply {
@@ -80,7 +82,6 @@ class NetworkModule {
             }
             addInterceptor(checkerInterceptor)
             addNetworkInterceptor(jsonAcceptHeaderInterceptor)
-            addNetworkInterceptor(authTokenHeaderInterceptor)
             connectTimeout(CONNECTION_TIMEOUT_IN_MINUTES, TimeUnit.MINUTES)
         }.build()
 
@@ -103,6 +104,8 @@ class NetworkModule {
         .build()
 
     @Named(CREDENTIALS)
+    @Singleton
+    @Provides
     fun provideLoginRetrofit(
         @Named(CREDENTIALS) httpClient: OkHttpClient,
         parser: ObjectMapper
@@ -119,6 +122,11 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideCredentialsApi(@Named(DATA) retrofit: Retrofit): CredentialsApi =
+    fun provideCredentialsApi(@Named(CREDENTIALS) retrofit: Retrofit): CredentialsApi =
         retrofit.create(CredentialsApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideProfileApi(@Named(DATA) retrofit: Retrofit): ProfileApi =
+        retrofit.create(ProfileApi::class.java)
 }
