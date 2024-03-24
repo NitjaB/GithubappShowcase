@@ -17,6 +17,8 @@ import com.example.githubapp.core.navigation.BottomNavigationItem
 import com.example.githubapp.core.components.GithubappBottomNavigationItem
 import com.example.githubapp.feature.overview.OverviewScreen
 import com.example.githubapp.feature.overview.navigation.OverviewScreenRouter
+import com.example.githubapp.feature.profile.ProfileScreen
+import com.example.githubapp.feature.profile.navigation.ProfileScreenRouter
 import com.example.githubapp.feature.search.SearchScreen
 import com.example.githubapp.feature.search.navigation.SearchScreenRouter
 
@@ -42,19 +44,9 @@ fun HomeScreen() {
                 navController = navController,
                 startDestination = OverviewScreenRouter.route(),
             ) {
-                composable(OverviewScreenRouter.route()) { OverviewScreen(innerPadding) }
+                composable(OverviewScreenRouter.route()) { OverviewScreen(paddingValues = innerPadding) }
                 composable(SearchScreenRouter.route()) { SearchScreen(innerPadding) }
-                composable("profile") {
-                    Box(
-                        Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding)
-                    ) {
-                        Text(
-                            text = "Profile!"
-                        )
-                    }
-                }
+                composable(ProfileScreenRouter.route()) { ProfileScreen(innerPadding) }
             }
         },
     )
