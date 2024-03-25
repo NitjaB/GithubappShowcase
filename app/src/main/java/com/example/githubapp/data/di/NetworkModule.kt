@@ -6,6 +6,7 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.githubapp.BuildConfig
 import com.example.githubapp.data.ApiConstants
 import com.example.githubapp.data.api.CredentialsApi
+import com.example.githubapp.data.api.IssuesApi
 import com.example.githubapp.data.api.ProfileApi
 import com.example.githubapp.data.api.SearchApi
 import com.example.githubapp.data.interceptors.AuthTokenHeaderInterceptor
@@ -22,6 +23,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
+import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
@@ -129,4 +131,9 @@ class NetworkModule {
     @Singleton
     fun provideProfileApi(@Named(DATA) retrofit: Retrofit): ProfileApi =
         retrofit.create(ProfileApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideIssuesApi(@Named(DATA) retrofit: Retrofit): IssuesApi =
+        retrofit.create(IssuesApi::class.java)
 }
