@@ -18,7 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.githubapp.R
 import com.example.githubapp.core.components.GithubAppLabel
 import com.example.githubapp.designSystem.theme.Typography
-import com.example.githubapp.designSystem.theme.green
+import com.example.githubapp.designSystem.theme.green300
 import com.example.githubapp.designSystem.theme.lightBlue
 import com.example.githubapp.feature.overview.models.OverviewScreenEvents
 import com.example.githubapp.feature.overview.viewmodel.OverviewViewModel
@@ -43,7 +43,7 @@ fun OverviewScreen(
         GithubAppLabel(
             label = stringResource(R.string.issues),
             indicator = R.drawable.ic_issues,
-            indicatorBackground = green,
+            indicatorBackground = green300,
             modifier = Modifier.clickable {
                 viewModel.onEvent(OverviewScreenEvents.OnIssuesClicked)
             }
