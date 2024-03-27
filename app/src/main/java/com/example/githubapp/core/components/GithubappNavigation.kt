@@ -15,6 +15,8 @@ import com.example.githubapp.core.navigation.NavigationEvent.NavigateBack
 import com.example.githubapp.core.navigation.NavigationEvent.NavigateUp
 import com.example.githubapp.core.navigation.NavigationEvent.OpenExternalDestination
 import com.example.githubapp.core.navigation.Navigator
+import com.example.githubapp.feature.assignedIssues.AssignedIssuesScreen
+import com.example.githubapp.feature.assignedIssues.navigation.AssignedIssuesScreenRouter
 import com.example.githubapp.feature.home.HomeScreen
 import com.example.githubapp.feature.home.navigation.HomeScreenRouter
 import com.example.githubapp.feature.login.LoginScreen
@@ -49,6 +51,7 @@ fun GithubappNavigation(
         ) {
             composable(HomeScreenRouter.route()) { HomeScreen() }
             composable(LoginScreenRouter.route()) { LoginScreen() }
+            composable(AssignedIssuesScreenRouter.route()) { AssignedIssuesScreen() }
         }
     }
 }
