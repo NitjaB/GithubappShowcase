@@ -1,11 +1,9 @@
 package com.example.githubapp.feature.profile.viewmodel
 
-import android.content.Intent
 import androidx.lifecycle.viewModelScope
 import com.example.githubapp.core.base.BaseViewModel
 import com.example.githubapp.core.base.TIMEOUT_DELAY
-import com.example.githubapp.core.navigation.NavigationEvent
-import com.example.githubapp.core.navigation.Navigator
+import com.example.githubapp.core.system.SystemCall
 import com.example.githubapp.domain.profile.usecase.GetAuthenticatedUsersProfile
 import com.example.githubapp.feature.profile.models.ProfileScreenEvent
 import com.example.githubapp.feature.profile.models.ProfileScreenEvent.OnReloadClicked
@@ -23,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val getProfile: GetAuthenticatedUsersProfile,
-    private val navigator: Navigator,
+    private val systemCall: SystemCall,
 ) : BaseViewModel<ProfileScreenEvent>() {
 
     private val _viewState = MutableStateFlow(ProfileScreenState())
@@ -63,18 +61,8 @@ class ProfileViewModel @Inject constructor(
     override fun onEvent(event: ProfileScreenEvent) {
         when (event) {
             is OnReloadClicked -> loadUsersProfile()
-            OnShareClicked -> _viewState.value.profile?.let {notNullProfile ->
-                viewModelScope.launch {
-                    navigator.emitDestination(
-                        NavigationEvent.OpenExternalDestination(
-                            Intent().apply {
-                                action = Intent.ACTION_SEND
-                                putExtra(Intent.EXTRA_TEXT, notNullProfile.url )
-                                type = "text/plain"
-                            }
-                        )
-                    )
-                }
+            OnShareClicked -> _viewState.value.profile?.let { notNullProfile ->
+                systemCall.share(notNullProfile.url)
             }
         }
     }
