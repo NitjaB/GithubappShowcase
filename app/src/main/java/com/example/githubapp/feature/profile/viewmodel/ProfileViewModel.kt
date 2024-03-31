@@ -4,15 +4,16 @@ import androidx.lifecycle.viewModelScope
 import com.example.githubapp.core.base.BaseViewModel
 import com.example.githubapp.core.base.TIMEOUT_DELAY
 import com.example.githubapp.core.system.SystemCall
+import com.example.githubapp.domain.models.Profile
 import com.example.githubapp.domain.profile.usecase.GetAuthenticatedUsersProfile
 import com.example.githubapp.feature.profile.models.ProfileScreenEvent
 import com.example.githubapp.feature.profile.models.ProfileScreenEvent.OnReloadClicked
 import com.example.githubapp.feature.profile.models.ProfileScreenEvent.OnShareClicked
 import com.example.githubapp.feature.profile.models.ProfileScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -24,8 +25,16 @@ class ProfileViewModel @Inject constructor(
     private val systemCall: SystemCall,
 ) : BaseViewModel<ProfileScreenEvent>() {
 
-    private val _viewState = MutableStateFlow(ProfileScreenState())
-    val viewState = _viewState.stateIn(
+    private val profile = MutableStateFlow<Profile?>(null)
+    private val isLoading = MutableStateFlow(true)
+    private val isError = MutableStateFlow(false)
+
+    val viewState = combine(
+        profile,
+        isLoading,
+        isError,
+        ::ProfileScreenState,
+    ).stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(TIMEOUT_DELAY),
         initialValue = ProfileScreenState()
@@ -36,23 +45,17 @@ class ProfileViewModel @Inject constructor(
     }
 
     private fun loadUsersProfile() {
-        _viewState.update { state ->
-            state.copy(isLoading = true, isError = false)
-        }
-        viewModelScope.launch(Dispatchers.IO) {
+        isLoading.update { true }
+        isError.update { false }
+        viewModelScope.launch {
             getProfile().fold(
                 { profile ->
-                    _viewState.update { state ->
-                        state.copy(profile = profile, isLoading = false)
-                    }
+                    isLoading.update { false }
+                    this@ProfileViewModel.profile.update { profile }
                 },
                 {
-                    _viewState.update { state ->
-                        state.copy(
-                            isLoading = false,
-                            isError = true,
-                        )
-                    }
+                    isLoading.update { false }
+                    isError.update { true }
                 }
             )
         }
@@ -61,7 +64,7 @@ class ProfileViewModel @Inject constructor(
     override fun onEvent(event: ProfileScreenEvent) {
         when (event) {
             is OnReloadClicked -> loadUsersProfile()
-            OnShareClicked -> _viewState.value.profile?.let { notNullProfile ->
+            OnShareClicked -> profile.value?.let { notNullProfile ->
                 systemCall.share(notNullProfile.url)
             }
         }
