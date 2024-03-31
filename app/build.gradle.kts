@@ -74,4 +74,9 @@ dependencies {
     implementation(libs.jakson.kotlin)
     debugImplementation(libs.chucker)
     releaseImplementation(libs.chucker.noOp)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.coorutine.test)
+    testImplementation(libs.turbine)
+    testImplementation(libs.kotest)
 }
