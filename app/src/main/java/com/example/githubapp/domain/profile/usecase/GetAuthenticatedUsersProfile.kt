@@ -1,12 +1,8 @@
 package com.example.githubapp.domain.profile.usecase
 
-import com.example.githubapp.domain.profile.ProfileRepository
-import javax.inject.Inject
+import com.example.githubapp.domain.models.Profile
 
-class GetAuthenticatedUsersProfile @Inject constructor(
-    private val repository: ProfileRepository,
-) {
+interface GetAuthenticatedUsersProfile {
 
-    suspend operator fun invoke() =
-        repository.getAuthenticatedUserProfile()
+    suspend operator fun invoke(): Result<Profile>
 }
