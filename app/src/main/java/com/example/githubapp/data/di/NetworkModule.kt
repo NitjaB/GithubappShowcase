@@ -5,10 +5,10 @@ import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.githubapp.BuildConfig
 import com.example.githubapp.data.ApiConstants
-import com.example.githubapp.data.api.CredentialsApi
-import com.example.githubapp.data.api.IssuesApi
-import com.example.githubapp.data.api.ProfileApi
-import com.example.githubapp.data.api.SearchApi
+import com.example.githubapp.data.credencials.CredentialsApi
+import com.example.githubapp.data.issues.IssuesApi
+import com.example.githubapp.data.profile.ProfileApi
+import com.example.githubapp.data.search.SearchApi
 import com.example.githubapp.data.interceptors.AuthTokenHeaderInterceptor
 import com.example.githubapp.data.interceptors.JsonAcceptHeaderInterceptor
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -23,7 +23,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
-import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton

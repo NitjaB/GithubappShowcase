@@ -1,4 +1,4 @@
-package com.example.githubapp.data.api
+package com.example.githubapp.data.credencials
 
 import com.example.githubapp.data.ApiConstants
 import com.example.githubapp.data.models.AccessTokenResponse

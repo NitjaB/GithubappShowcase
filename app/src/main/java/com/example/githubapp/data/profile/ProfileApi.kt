@@ -1,4 +1,4 @@
-package com.example.githubapp.data.api
+package com.example.githubapp.data.profile
 
 import com.example.githubapp.data.models.ProfileResponse
 import retrofit2.http.GET

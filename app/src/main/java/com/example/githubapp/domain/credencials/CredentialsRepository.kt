@@ -1,6 +1,6 @@
 package com.example.githubapp.domain.credencials
 
-import com.example.githubapp.data.datasource.CredentialsDatasource
+import com.example.githubapp.data.credencials.CredentialsDatasource
 import com.example.githubapp.domain.helpers.toResult
 import javax.inject.Inject
 

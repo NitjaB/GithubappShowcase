@@ -1,6 +1,5 @@
-package com.example.githubapp.data.datasource
+package com.example.githubapp.data.issues
 
-import com.example.githubapp.data.api.IssuesApi
 import com.example.githubapp.data.helpers.safeApiCall
 import com.example.githubapp.data.models.PagedData
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.example.githubapp.data.api
+package com.example.githubapp.data.issues
 
 import com.example.githubapp.data.models.IssueResponse
 import com.example.githubapp.data.models.PagedData

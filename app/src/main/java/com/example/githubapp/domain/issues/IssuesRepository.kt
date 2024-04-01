@@ -2,7 +2,7 @@ package com.example.githubapp.domain.issues
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.example.githubapp.data.datasource.IssuesDatasource
+import com.example.githubapp.data.issues.IssuesDatasource
 import com.example.githubapp.domain.helpers.SimplePaginationSource
 import com.example.githubapp.domain.helpers.toResult
 import com.example.githubapp.domain.issues.mappers.IssueMapper
