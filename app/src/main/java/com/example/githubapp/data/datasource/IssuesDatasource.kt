@@ -13,13 +13,11 @@ class IssuesDatasource @Inject constructor(
         val issuesAndPullRequests = api.getIssuesAndPullRequests(page)
         return@safeApiCall if (issuesAndPullRequests.isNotEmpty()) {
             PagedData(
-                totalCount = 0,
                 incompleteResults = true,
                 items = issuesAndPullRequests.filter { responseContent -> responseContent.pullRequestLinksResponse == null }
             )
         } else {
             PagedData(
-                totalCount = 0,
                 incompleteResults = false,
                 items = listOf()
             )
@@ -30,13 +28,11 @@ class IssuesDatasource @Inject constructor(
         val issuesAndPullRequests = api.getIssuesAndPullRequests(page)
         return@safeApiCall if (issuesAndPullRequests.isNotEmpty()) {
             PagedData(
-                totalCount = 0,
                 incompleteResults = true,
                 items = issuesAndPullRequests.filter { responseContent -> responseContent.pullRequestLinksResponse != null }
             )
         } else {
             PagedData(
-                totalCount = 0,
                 incompleteResults = false,
                 items = listOf()
             )
