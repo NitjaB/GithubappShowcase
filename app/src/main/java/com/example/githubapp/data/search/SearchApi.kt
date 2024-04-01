@@ -1,4 +1,4 @@
-package com.example.githubapp.data.api
+package com.example.githubapp.data.search
 
 import com.example.githubapp.data.models.PagedData
 import com.example.githubapp.data.models.RepositoryResponse

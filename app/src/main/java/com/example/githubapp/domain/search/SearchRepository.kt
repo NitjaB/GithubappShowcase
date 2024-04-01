@@ -2,7 +2,7 @@ package com.example.githubapp.domain.search
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.example.githubapp.data.datasource.SearchDatasource
+import com.example.githubapp.data.search.SearchDatasource
 import com.example.githubapp.domain.helpers.SimplePaginationSource
 import com.example.githubapp.domain.helpers.toResult
 import com.example.githubapp.domain.models.PagedData

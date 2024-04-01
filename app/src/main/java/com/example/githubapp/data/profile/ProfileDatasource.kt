@@ -1,6 +1,6 @@
-package com.example.githubapp.data.datasource
+package com.example.githubapp.data.profile
 
-import com.example.githubapp.data.api.ProfileApi
+import com.example.githubapp.data.profile.ProfileApi
 import com.example.githubapp.data.helpers.safeApiCall
 import javax.inject.Inject
 

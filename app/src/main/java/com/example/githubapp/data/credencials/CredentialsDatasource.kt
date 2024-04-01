@@ -1,7 +1,6 @@
-package com.example.githubapp.data.datasource
+package com.example.githubapp.data.credencials
 
 import com.example.githubapp.core.sharedPrefs.SharedPrefs
-import com.example.githubapp.data.api.CredentialsApi
 import com.example.githubapp.data.helpers.safeApiCall
 import com.example.githubapp.data.models.AccessTokenResponse
 import com.example.githubapp.data.models.NetworkResource
