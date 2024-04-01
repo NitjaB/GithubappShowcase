@@ -33,6 +33,9 @@ class SearchViewModel @Inject constructor(
 
     private val searchText = MutableStateFlow("")
 
+    private val showRepositoryList = searchText
+        .mapLatest { text -> text.length >= MINIMAL_QUERY_LENGTH_TO_START_SEARCH }
+
     private val repositories = searchText
         .debounce(QUERY_DEBOUNCE)
         .mapLatest { query ->
@@ -46,6 +49,7 @@ class SearchViewModel @Inject constructor(
     val state = combine(
         searchText,
         repositories,
+        showRepositoryList,
         ::SearchScreenState
     ).stateIn(
         scope = viewModelScope,
