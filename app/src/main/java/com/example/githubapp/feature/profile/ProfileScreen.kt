@@ -21,7 +21,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.githubapp.R
+import com.example.githubapp.core.components.ErrorScreen
 import com.example.githubapp.feature.profile.components.ProfileHeadline
+import com.example.githubapp.feature.profile.components.ProfileHeadlineLoading
+import com.example.githubapp.feature.profile.models.ProfileScreenEvent.OnReloadClicked
 import com.example.githubapp.feature.profile.models.ProfileScreenEvent.OnShareClicked
 import com.example.githubapp.feature.profile.viewmodel.ProfileViewModel
 
@@ -33,38 +36,40 @@ fun ProfileScreen(
 
     val viewState by viewModel.viewState.collectAsState()
 
-    Surface(
-        shadowElevation = 2.dp,
-        modifier = Modifier.padding(paddingValues),
-    ) {
-        Column(
-            Modifier
-                .padding(8.dp)
-                .fillMaxWidth()
+    if (!viewState.isError) {
+        Surface(
+            shadowElevation = 2.dp,
+            modifier = Modifier.padding(paddingValues),
         ) {
-            viewState.profile?.let { notNullProfile ->
+            Column(
+                Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth()
+            ) {
                 Icon(
                     painter = painterResource(R.drawable.ic_share),
                     contentDescription = stringResource(R.string.default_icon_content_description),
                     modifier = Modifier
                         .clip(CircleShape)
-                        .clickable { viewModel.onEvent(OnShareClicked) }
+                        .then(
+                            if (viewState.profile != null) {
+                                Modifier.clickable { viewModel.onEvent(OnShareClicked) }
+                            } else {
+                                Modifier
+                            }
+                        )
                         .padding(12.dp)
                         .size(24.dp)
                         .align(Alignment.End),
-                    tint = MaterialTheme.colorScheme.primary
+                    tint = MaterialTheme.colorScheme.primary,
                 )
-                ProfileHeadline(profile = notNullProfile)
-            }
-            when {
-                viewState.isError -> {
-
-                }
-
-                viewState.isLoading -> {
-
+                viewState.profile?.let { notNullProfile -> ProfileHeadline(notNullProfile) }
+                if (viewState.isLoading) {
+                    ProfileHeadlineLoading()
                 }
             }
         }
+    } else {
+        ErrorScreen { viewModel.onEvent(OnReloadClicked) }
     }
 }
