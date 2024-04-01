@@ -10,6 +10,7 @@
 
     <string name="search_screen_search_bar_placeholder">Search repos</string>
     <string name="search_screen_no_repositories_matching_your_query">There are no repositories matching you query</string>
+    <string name="search_screen_start_search_hint">Enter 3 or more letters to begin search</string>
 
     <string name="overview_screen_my_work_title">My work</string>
 

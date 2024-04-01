@@ -8,4 +8,5 @@ import kotlinx.coroutines.flow.flowOf
 data class SearchScreenState(
     val searchText: String = "",
     val repositories: Flow<PagingData<Repository>> = flowOf(),
+    val showRepositoryList: Boolean = false,
 )
