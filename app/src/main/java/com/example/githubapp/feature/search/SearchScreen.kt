@@ -1,11 +1,11 @@
 package com.example.githubapp.feature.search
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,7 +19,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.githubapp.R
-import com.example.githubapp.feature.search.components.RepositoryList
+import com.example.githubapp.core.components.SimpleLazyColumn
+import com.example.githubapp.designSystem.theme.black
+import com.example.githubapp.designSystem.theme.white
+import com.example.githubapp.feature.search.components.RepositoryItem
 import com.example.githubapp.feature.search.components.SearchBar
 import com.example.githubapp.feature.search.model.SearchScreenEvent.onOpenFiltersClicked
 import com.example.githubapp.feature.search.model.SearchScreenEvent.onSearchTextChanged
@@ -30,34 +33,35 @@ fun SearchScreen(
     innerPadding: PaddingValues,
     viewModel: SearchViewModel = hiltViewModel(),
 ) {
-
     val state by viewModel.state.collectAsState()
-
     val repositories = state.repositories.collectAsLazyPagingItems()
 
     Column(
         Modifier
             .padding(innerPadding)
-            .padding(top = 16.dp)
             .fillMaxSize()
     ) {
         SearchBar(
             text = state.searchText,
             onTextChange = { text -> viewModel.onEvent(onSearchTextChanged(text)) },
             onConfigureClicked = { viewModel.onEvent(onOpenFiltersClicked) },
-            modifier = Modifier.padding(bottom = 4.dp)
+            modifier = Modifier
+                .background(if (isSystemInDarkTheme()) black else white)
+                .padding(top = 8.dp)
+                .padding(bottom = 4.dp)
         )
         if (state.showRepositoryList) {
-            RepositoryList(
-                repositories = repositories,
+            SimpleLazyColumn(
+                items = repositories,
+                key = { id },
+                uiItemBuilder = { repository -> RepositoryItem(repository) },
+                noItemsItem = { NoItems() },
                 modifier = Modifier.weight(1f, true),
+                itemSpacing = 2.dp,
+                topInset = 8.dp,
             )
         } else {
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth()
-            ) {
+            Box(Modifier.fillMaxSize()) {
                 Text(
                     text = stringResource(R.string.search_screen_start_search_hint),
                     textAlign = TextAlign.Center,
@@ -65,5 +69,22 @@ fun SearchScreen(
                 )
             }
         }
+    }
+}
+
+@Composable
+fun NoItems(
+    modifier: Modifier = Modifier,
+) {
+    Box(
+        modifier
+            .fillMaxSize()
+            .padding(horizontal = 64.dp)
+    ) {
+        Text(
+            text = stringResource(R.string.search_screen_no_repositories_matching_your_query),
+            modifier = Modifier.align(Alignment.Center),
+            textAlign = TextAlign.Center
+        )
     }
 }
