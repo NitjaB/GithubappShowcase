@@ -4,6 +4,10 @@ import com.example.githubapp.core.sharedPrefs.SharedPrefs
 import com.example.githubapp.data.helpers.safeApiCall
 import com.example.githubapp.data.models.AccessTokenResponse
 import com.example.githubapp.data.models.NetworkResource
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,6 +22,8 @@ class CredentialsDatasource @Inject constructor(
     }
 
     private var cachedToken: String? = null
+
+    private val badAuthNotificationChannel = Channel<Unit>()
 
     suspend fun authenticateUser(code: String): NetworkResource<AccessTokenResponse> {
         val call = safeApiCall {
@@ -36,4 +42,10 @@ class CredentialsDatasource @Inject constructor(
         cachedToken = sharedPrefs.getString(ACCESS_TOKEN_SHARED_PREFS_KEY)
         cachedToken
     }
+
+    fun notifyCallFailedBecauseOfBadAuth() {
+        badAuthNotificationChannel.trySend(Unit)
+    }
+
+    fun getBadAuthChanel() = badAuthNotificationChannel.receiveAsFlow()
 }

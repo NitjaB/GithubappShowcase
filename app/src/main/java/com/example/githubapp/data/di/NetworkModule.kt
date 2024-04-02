@@ -6,6 +6,7 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.githubapp.BuildConfig
 import com.example.githubapp.data.ApiConstants
 import com.example.githubapp.data.credencials.CredentialsApi
+import com.example.githubapp.data.interceptors.AccessForbiddenAuthInterceptor
 import com.example.githubapp.data.issues.IssuesApi
 import com.example.githubapp.data.profile.ProfileApi
 import com.example.githubapp.data.search.SearchApi
@@ -52,6 +53,7 @@ class NetworkModule {
     fun provideDataOkHttpClient(
         chuckerInterceptor: ChuckerInterceptor,
         authTokenHeaderInterceptor: AuthTokenHeaderInterceptor,
+        accessForbiddenAuthInterceptor: AccessForbiddenAuthInterceptor,
     ) =
         OkHttpClient.Builder().apply {
             if (BuildConfig.DEBUG) {
@@ -63,6 +65,7 @@ class NetworkModule {
             }
             addInterceptor(chuckerInterceptor)
             addNetworkInterceptor(authTokenHeaderInterceptor)
+            addNetworkInterceptor(accessForbiddenAuthInterceptor)
             connectTimeout(CONNECTION_TIMEOUT_IN_MINUTES, TimeUnit.MINUTES)
         }.build()
 

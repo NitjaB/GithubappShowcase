@@ -12,4 +12,6 @@ class CredentialsRepository @Inject constructor(
         datasource.authenticateUser(code).toResult {}
 
     fun isUserLoggedIn() = datasource.getAccessToken() != null
+
+    fun getUserLoggedOffNotifier() = datasource.getBadAuthChanel()
 }
