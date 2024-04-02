@@ -20,14 +20,15 @@ class SimplePaginationSource<T : Any>(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
         val page = params.key ?: FIRST_PAGE
         val result = source(page)
-        return if (result.isSuccess) {
-            Page(
-                data = result.getOrNull()?.items ?: listOf(),
-                prevKey = if (page == FIRST_PAGE) null else page.minus(1),
-                nextKey = if (result.getOrNull()?.isLastPage == false) page.plus(1) else null,
-            )
-        } else {
-            Error(result.exceptionOrNull() ?: Throwable())
-        }
+        return result.fold(
+            { content ->
+                Page(
+                    data = content.items,
+                    prevKey = if (page == FIRST_PAGE) null else page.minus(1),
+                    nextKey = if (result.getOrNull()?.isLastPage == false) page.plus(1) else null,
+                )
+            },
+            { throwable -> Error(throwable) }
+        )
     }
 }
