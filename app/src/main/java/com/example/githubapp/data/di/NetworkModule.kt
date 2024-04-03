@@ -42,7 +42,7 @@ class NetworkModule {
     fun provideChucker(@ApplicationContext context: Context) =
         ChuckerInterceptor.Builder(context)
             .collector(ChuckerCollector(context))
-            .maxContentLength(250000L)
+            .maxContentLength(250_000L)
             .redactHeaders(emptySet())
             .alwaysReadResponseBody(false)
             .build()
