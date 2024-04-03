@@ -22,7 +22,7 @@ junit = "4.13.2"
 kotest = "5.8.1"
 turbine = "1.1.0"
 chucker = "4.0.0"
-ktlint = "0.50.0"
+ktlint = "1.2.1"
 detekt = '1.23.1'
 
 [libraries]
@@ -44,7 +44,7 @@ timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "tim
 chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" }
 chucker-noOp = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
 detekt-cli = { group = "io.gitlab.arturbosch.detekt", name = "detekt-cli", version.ref = "detekt" }
-ktlint = { group = "com.pinterest", name = "ktlint", version.ref = "ktlint" }
+ktlint = { group = "com.pinterest.ktlint", name = "ktlint-cli", version.ref = "ktlint" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okHttp" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttp" }

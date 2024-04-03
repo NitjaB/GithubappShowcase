@@ -36,7 +36,7 @@ tasks.register('ktlintCheck', JavaExec) {
     mainClass = "com.pinterest.ktlint.Main"
     // Fixes a known ktlint issue https://github.com/pinterest/ktlint/issues/1195
     jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
-    args("src/**/*.kt", "--editorconfig=.editorconfig", "--experimental")
+    args("src/**/*.kt", "--editorconfig=.editorconfig")
 }
 
 tasks.register('ktlintFormat', JavaExec) {
@@ -45,5 +45,5 @@ tasks.register('ktlintFormat', JavaExec) {
     mainClass = "com.pinterest.ktlint.Main"
     // Fixes a known ktlint issue https://github.com/pinterest/ktlint/issues/1195
     jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
-    args("-F", "src/**/*.kt", "--editorconfig=.editorconfig", "--experimental")
+    args("-F", "src/**/*.kt", "--editorconfig=.editorconfig")
 }
