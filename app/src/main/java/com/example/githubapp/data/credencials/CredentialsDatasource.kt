@@ -5,8 +5,6 @@ import com.example.githubapp.data.helpers.safeApiCall
 import com.example.githubapp.data.models.AccessTokenResponse
 import com.example.githubapp.data.models.NetworkResource
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
 import javax.inject.Singleton
