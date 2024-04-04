@@ -1,6 +1,7 @@
 package com.example.githubapp.designSystem.theme
 
 import android.app.Activity
+import android.graphics.drawable.ColorDrawable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -44,6 +45,7 @@ fun GithubAppTheme(
             val window = (view.context as Activity).window
             window.statusBarColor = colorScheme.surface.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+            window.setBackgroundDrawable(ColorDrawable(colorScheme.background.toArgb()))
         }
     }
     MaterialTheme(
