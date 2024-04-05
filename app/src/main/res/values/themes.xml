@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.GithubTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="Theme.GithubTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowLayoutInDisplayCutoutMode">default</item>
+    </style>
 
     <style name="Theme.SplashScreen.MySplash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">#FF000000</item>
