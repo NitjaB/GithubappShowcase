@@ -23,10 +23,13 @@ class IssuesRepository @Inject constructor(
         pagingSourceFactory = { SimplePaginationSource { page -> getAuthenticatedUserIssues(page) } },
     ).flow
 
-    private suspend fun getAuthenticatedUserIssues(page: Int) = datasource.getIssues(page).toResult { data ->
-        PagedData(
-            isLastPage = !data.incompleteResults,
-            items = data.items.map { responseItem -> issueMapper.map(responseItem) },
-        )
-    }
+    private suspend fun getAuthenticatedUserIssues(page: Int) =
+        datasource.getIssuesAndPullRequestsAssignedToUser(page).toResult { response ->
+            PagedData(
+                isLastPage = response.isEmpty(),
+                items = response
+                    .filter { issuesAndPullRequests -> issuesAndPullRequests.pullRequestLinksResponse == null }
+                    .map { issueResponse -> issueMapper.map(issueResponse) }
+            )
+        }
 }
