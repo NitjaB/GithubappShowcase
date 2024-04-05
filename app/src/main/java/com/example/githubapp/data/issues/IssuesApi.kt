@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface IssuesApi {
 
     @GET("issues")
-    suspend fun getIssuesAndPullRequests(
+    suspend fun getIssuesAndPullRequestsAssignedToUser(
         @Query("page") pageNumber: Int = PagedData.FIRST_PAGE,
         @Query("per_page") pageSize: Int = PagedData.DEFAULT_PAGE_SIZE,
     ): List<IssueResponse>
