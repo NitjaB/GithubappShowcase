@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class PagedData<T>(
-    @JsonProperty("incomplete_results") val incompleteResults: Boolean,
     @JsonProperty("items") val items: List<T>
 ) {
     companion object {

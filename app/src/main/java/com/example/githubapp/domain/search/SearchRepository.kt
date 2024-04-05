@@ -23,7 +23,7 @@ class SearchRepository @Inject constructor(
         page: Int,
     ) = searchDatasource.getRepositories(query, page).toResult { content ->
         PagedData(
-            isLastPage = !content.incompleteResults,
+            isLastPage = content.items.isEmpty(),
             items = content.items.map { item -> repositoryMapper.map(item) }
         )
     }
