@@ -39,16 +39,16 @@ fun GithubAppLabel(
             painter = painterResource(indicator),
             contentDescription = stringResource(R.string.default_icon_content_description),
             modifier = Modifier
-                .padding(end = 8.dp)
-                .clip(RoundedCornerShape(2.dp))
+                .clip(RoundedCornerShape(4.dp))
                 .background(indicatorBackground)
                 .size(28.dp)
-                .padding(4.dp),
+                .padding(6.dp),
             tint = white
         )
         Text(
             text = label,
             modifier = Modifier
+                .padding(start = 8.dp)
                 .weight(weight = 1f, fill = true)
                 .wrapContentHeight(),
         )

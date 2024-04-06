@@ -36,8 +36,8 @@ fun OverviewScreen(
     ) {
         Text(
             text = stringResource(R.string.overview_screen_my_work_title),
-            modifier = Modifier.padding(bottom = 16.dp, start = 12.dp),
-            style = Typography.titleMedium,
+            modifier = Modifier.padding(bottom = 16.dp, start = 12.dp, top = 10.dp),
+            style = Typography.titleLarge,
         )
         GithubAppLabel(
             label = stringResource(R.string.issues),
