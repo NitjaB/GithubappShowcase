@@ -2,7 +2,7 @@ package com.example.githubapp.designSystem.theme
 
 import androidx.compose.ui.graphics.Color
 
-val blue = Color(0xFF0041C2)
+val blue = Color(0xFF0366D6)
 val white = Color(0xFFFFFFFF)
 val red = Color(0xFF960019)
 val black = Color(0xFF000000)

@@ -86,7 +86,11 @@ fun RepositoryItem(
                 )
                 Text(text = repository.staredTimes.toString())
                 if (!repository.language.isNullOrEmpty()) {
-                    Text(text = repository.language, Modifier.padding(start = 8.dp))
+                    Text(
+                        text = repository.language,
+                        color = gray500,
+                        modifier = Modifier.padding(start = 8.dp),
+                    )
                 }
             }
         }

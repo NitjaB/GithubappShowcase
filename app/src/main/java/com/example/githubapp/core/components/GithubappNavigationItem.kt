@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.githubapp.designSystem.theme.blue
 import com.example.githubapp.designSystem.theme.gray500
 import com.example.githubapp.designSystem.theme.lightBlue
 
@@ -43,12 +44,10 @@ fun RowScope.GithubappNavigationItem(
         label = label,
         icon = icon,
         colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = lightBlue,
+            selectedIconColor = blue,
             unselectedIconColor = gray500,
-            selectedTextColor = lightBlue,
-            unselectedTextColor = gray500
-
-
+            selectedTextColor = blue,
+            unselectedTextColor = gray500,
         )
     )
 }

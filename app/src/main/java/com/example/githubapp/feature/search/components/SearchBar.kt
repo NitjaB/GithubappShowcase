@@ -70,7 +70,7 @@ fun SearchBar(
             ),
             singleLine = true,
             cursorBrush = SolidColor(blue),
-            textStyle = MaterialTheme.typography.bodyMedium,
+            textStyle = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onBackground),
             modifier = Modifier.weight(1f, true),
             decorationBox = { innerTextField ->
                 Column(
