@@ -6,6 +6,7 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.githubapp.BuildConfig
 import com.example.githubapp.data.ApiConstants
 import com.example.githubapp.data.credencials.CredentialsApi
+import com.example.githubapp.data.details.DetailsApi
 import com.example.githubapp.data.interceptors.AccessForbiddenAuthInterceptor
 import com.example.githubapp.data.issues.IssuesApi
 import com.example.githubapp.data.profile.ProfileApi
@@ -27,6 +28,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
+import retrofit2.create
 
 private const val CONNECTION_TIMEOUT_IN_MINUTES = 1L
 
@@ -138,4 +140,9 @@ class NetworkModule {
     @Singleton
     fun provideIssuesApi(@Named(DATA) retrofit: Retrofit): IssuesApi =
         retrofit.create(IssuesApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideDetailsApi(@Named(DATA) retrofit: Retrofit): DetailsApi =
+        retrofit.create(DetailsApi::class.java)
 }
