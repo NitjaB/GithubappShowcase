@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.githubapp.R
 import com.example.githubapp.designSystem.theme.GithubAppTheme
+import com.example.githubapp.designSystem.theme.gray500
 import com.example.githubapp.designSystem.theme.green500
 import com.example.githubapp.designSystem.theme.purple
 import com.example.githubapp.domain.models.AuthorInfo
@@ -52,7 +53,7 @@ fun IssueItem(issue: Issue, modifier: Modifier = Modifier) {
         Column(Modifier.padding(horizontal = 8.dp)) {
             Text(
                 text = issue.repository.fullName,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodyMedium.copy(color = gray500),
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
             )
@@ -81,7 +82,9 @@ fun OpenedIssuePreview() {
                     "karlomaricevic/shortName",
                     description = "description",
                     language = "Kotlin",
-                    staredTimes = 1900
+                    staredTimes = 1900,
+                    forkNumber = 0,
+                    url = ""
                 ),
                 authorInfo = AuthorInfo("", Image.LocalImage(R.drawable.ic_launcher_foreground)),
                 description = "",
@@ -107,7 +110,9 @@ fun ClosedIssuePreview() {
                     "karlomaricevic/" + List(20) { "shorName" }.joinToString(),
                     description = "description",
                     language = "Kotlin",
-                    staredTimes = 1900
+                    staredTimes = 1900,
+                    url = "",
+                    forkNumber = 0
                 ),
                 authorInfo = AuthorInfo("", Image.LocalImage(R.drawable.ic_launcher_foreground)),
                 description = "",
