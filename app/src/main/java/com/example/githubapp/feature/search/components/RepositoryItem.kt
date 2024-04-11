@@ -111,7 +111,9 @@ fun RepositoryItemPreview() {
             fullName = "Karlo/Kotlin",
             description = "Description",
             language = "Kotlin",
-            staredTimes = 1900
+            staredTimes = 1900,
+            forkNumber = 0,
+            url = ""
         )
     )
 }
@@ -131,6 +133,8 @@ fun RepositoryItemLongTextPreview() {
             description = List(30) { "LongDescription" }.joinToString(""),
             language = "Kotlin",
             staredTimes = 1900,
+            forkNumber = 0,
+            url = ""
         )
     )
 }

@@ -10,7 +10,7 @@ data class Repository(
     val description: String?,
     val language: String?,
     val staredTimes: Int,
-    val forkNumber: Int,
-    val url: String,
+    val forkNumber: Int?,
+    val url: String?,
 
 )
