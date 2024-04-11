@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class IssueResponse(
-    @JsonProperty("id") val id: Int,
+    @JsonProperty("id") val id: Long,
     @JsonProperty("repository_url") val repositoryUrl: String,
     @JsonProperty("title") val title: String,
     @JsonProperty("body") val body: String,

@@ -3,7 +3,7 @@ package com.example.githubapp.domain.models
 import com.example.githubapp.domain.search.models.Repository
 
 data class Issue(
-    val id: Int,
+    val id: Long,
     val repoName: String,
     val title: String,
     val authorInfo: AuthorInfo,

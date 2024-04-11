@@ -4,5 +4,5 @@ sealed interface AssignedIssuesEvent {
 
     data object OnBackClicked : AssignedIssuesEvent
 
-    data class OnIssueClicked(val id: Int) : AssignedIssuesEvent
+    data class OnIssueClicked(val id: Long) : AssignedIssuesEvent
 }
