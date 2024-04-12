@@ -21,4 +21,11 @@ class RepositoriesRepository @Inject constructor(
     ): Result<Boolean> {
         return datasource.isStarred(owner, repoName).toResult()
     }
+
+    suspend fun star(
+        owner: String,
+        repoName: String
+    ): Result<Boolean> {
+        return datasource.star(owner, repoName).toResult()
+    }
 }
