@@ -5,7 +5,10 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.githubapp.core.base.BaseViewModel
 import com.example.githubapp.core.base.TIMEOUT_DELAY
+import com.example.githubapp.core.navigation.NavigationEvent
+import com.example.githubapp.core.navigation.Navigator
 import com.example.githubapp.domain.search.usecase.SearchForRepository
+import com.example.githubapp.feature.repositoryDetails.navigation.DetailsScreenRouter
 import com.example.githubapp.feature.search.model.SearchScreenEvent
 import com.example.githubapp.feature.search.model.SearchScreenEvent.onOpenFiltersClicked
 import com.example.githubapp.feature.search.model.SearchScreenEvent.onSearchTextChanged
@@ -20,10 +23,12 @@ import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchForRepository: SearchForRepository,
+    private val navigator: Navigator,
 ) : BaseViewModel<SearchScreenEvent>() {
 
     private companion object {
@@ -62,6 +67,17 @@ class SearchViewModel @Inject constructor(
             is onSearchTextChanged -> searchText.update { event.text }
             is onOpenFiltersClicked -> {
                 // TODO
+            }
+
+            is SearchScreenEvent.OnRepositoryClicked -> viewModelScope.launch {
+                navigator.emitDestination(
+                    NavigationEvent.Destination(
+                        DetailsScreenRouter.creteRepositoryDetailsRoute(
+                            owner = event.owner,
+                            repositoryName = event.repoName,
+                        )
+                    )
+                )
             }
         }
     }
