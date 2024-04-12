@@ -21,4 +21,9 @@ class GetRepository @Inject constructor(
         owner: String,
         repoName: String,
     ) = repository.star(owner, repoName)
+
+    suspend fun unStar(
+        owner: String,
+        repoName: String,
+    ) = repository.unStar(owner, repoName)
 }

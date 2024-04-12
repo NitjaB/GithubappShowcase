@@ -28,4 +28,11 @@ class RepositoriesRepository @Inject constructor(
     ): Result<Boolean> {
         return datasource.star(owner, repoName).toResult()
     }
+
+    suspend fun unStar(
+        owner: String,
+        repoName: String
+    ): Result<Boolean> {
+        return  datasource.unStar(owner,repoName).toResult()
+    }
 }
