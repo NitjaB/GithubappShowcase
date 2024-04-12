@@ -87,6 +87,12 @@ class RepositoryDetailsViewModel @AssistedInject constructor(
         }
     }
 
+    private fun unStarRepository(){
+        viewModelScope.launch {
+            getRepository.unStar(params.owner, params.repoName)
+        }
+    }
+
     override fun onEvent(event: RepositoryDetailsScreenEvent) {
         when (event) {
             is RepositoryDetailsScreenEvent.NavigateBack -> viewModelScope.launch {
