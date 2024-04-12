@@ -20,7 +20,7 @@ import com.example.githubapp.feature.home.navigation.HomeScreenRouter
 import com.example.githubapp.feature.login.LoginScreen
 import com.example.githubapp.feature.login.navigation.LoginScreenRouter
 import com.example.githubapp.feature.repositoryDetails.DetailsScreen
-import com.example.githubapp.feature.repositoryDetails.navigation.DetailsScreenRouter
+import com.example.githubapp.feature.repositoryDetails.navigation.RepositoryDetailsScreenRouter
 
 @Composable
 fun GithubappNavigation(
@@ -49,11 +49,11 @@ fun GithubappNavigation(
             composable(HomeScreenRouter.route()) { HomeScreen() }
             composable(LoginScreenRouter.route()) { LoginScreen() }
             composable(AssignedIssuesScreenRouter.route()) { AssignedIssuesScreen() }
-            composable(DetailsScreenRouter.route()) { entry ->
-                val owner = entry.arguments?.getString(DetailsScreenRouter.OWNER_PARAM)
-                    ?: error("${DetailsScreenRouter.OWNER_PARAM} was not provided to repository details screen")
-                val repositoryName = entry.arguments?.getString(DetailsScreenRouter.REPOSITORY_NAME_PARAM)
-                    ?: error("${DetailsScreenRouter.REPOSITORY_NAME_PARAM} was not provided to repository details screen")
+            composable(RepositoryDetailsScreenRouter.route()) { entry ->
+                val owner = entry.arguments?.getString(RepositoryDetailsScreenRouter.OWNER_PARAM)
+                    ?: error("${RepositoryDetailsScreenRouter.OWNER_PARAM} was not provided to repository repositoryDetails screen")
+                val repositoryName = entry.arguments?.getString(RepositoryDetailsScreenRouter.REPOSITORY_NAME_PARAM)
+                    ?: error("${RepositoryDetailsScreenRouter.REPOSITORY_NAME_PARAM} was not provided to repository repositoryDetails screen")
                 DetailsScreen(owner, repositoryName)
             }
         }

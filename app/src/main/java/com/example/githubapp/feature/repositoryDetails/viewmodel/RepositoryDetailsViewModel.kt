@@ -8,8 +8,8 @@ import com.example.githubapp.core.navigation.Navigator
 import com.example.githubapp.core.system.SystemCall
 import com.example.githubapp.domain.repository.usecase.GetRepository
 import com.example.githubapp.domain.search.models.Repository
-import com.example.githubapp.feature.repositoryDetails.models.DetailsScreenEvent
-import com.example.githubapp.feature.repositoryDetails.models.DetailsScreenState
+import com.example.githubapp.feature.repositoryDetails.models.RepositoryDetailsScreenEvent
+import com.example.githubapp.feature.repositoryDetails.models.RepositoryDetailsScreenState
 import com.example.githubapp.feature.repositoryDetails.models.RepositoryDetailsVMParam
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -24,13 +24,13 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-@HiltViewModel(assistedFactory = DetailsViewModel.RepositoryDetailsViewModelFactory::class)
-class DetailsViewModel @AssistedInject constructor(
+@HiltViewModel(assistedFactory = RepositoryDetailsViewModel.RepositoryDetailsViewModelFactory::class)
+class RepositoryDetailsViewModel @AssistedInject constructor(
     @Assisted private val params: RepositoryDetailsVMParam,
     private val getRepository: GetRepository,
     private val navigator: Navigator,
     private val systemCall: SystemCall,
-) : BaseViewModel<DetailsScreenEvent>() {
+) : BaseViewModel<RepositoryDetailsScreenEvent>() {
 
     private val details = MutableStateFlow<Repository?>(null)
     private val isStarredByUser = MutableStateFlow(false)
@@ -42,11 +42,11 @@ class DetailsViewModel @AssistedInject constructor(
         isStarredByUser,
         isLoading,
         isError,
-        ::DetailsScreenState
+        ::RepositoryDetailsScreenState
     ).stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(TIMEOUT_DELAY),
-        initialValue = DetailsScreenState()
+        initialValue = RepositoryDetailsScreenState()
     )
 
     init {
@@ -72,7 +72,7 @@ class DetailsViewModel @AssistedInject constructor(
             Timber.d("Repo is liked is ${isStarred.await()}")
             if (repo.await().isSuccess && isStarred.await().isSuccess) {
                 isLoading.update { false }
-                this@DetailsViewModel.details.update { repo.await().getOrThrow() }
+                this@RepositoryDetailsViewModel.details.update { repo.await().getOrThrow() }
                 isStarredByUser.update { isStarred.await().getOrThrow() }
             } else {
                 isLoading.update { false }
@@ -81,13 +81,13 @@ class DetailsViewModel @AssistedInject constructor(
         }
     }
 
-    override fun onEvent(event: DetailsScreenEvent) {
+    override fun onEvent(event: RepositoryDetailsScreenEvent) {
         when (event) {
-            is DetailsScreenEvent.NavigateBack -> viewModelScope.launch {
+            is RepositoryDetailsScreenEvent.NavigateBack -> viewModelScope.launch {
                 navigator.emitDestination(NavigationEvent.NavigateBack)
             }
 
-            is DetailsScreenEvent.OnShareClicked -> details.value.let { notNullDetails ->
+            is RepositoryDetailsScreenEvent.OnShareClicked -> details.value.let { notNullDetails ->
                 systemCall.share(notNullDetails?.url ?: "")
             }
         }
@@ -95,7 +95,7 @@ class DetailsViewModel @AssistedInject constructor(
 
     @AssistedFactory
     interface RepositoryDetailsViewModelFactory {
-        fun create(params: RepositoryDetailsVMParam): DetailsViewModel
+        fun create(params: RepositoryDetailsVMParam): RepositoryDetailsViewModel
     }
 
 }

@@ -21,15 +21,15 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.githubapp.R
 import com.example.githubapp.feature.repositoryDetails.components.RepositoryDetailsHeadline
-import com.example.githubapp.feature.repositoryDetails.models.DetailsScreenEvent
+import com.example.githubapp.feature.repositoryDetails.models.RepositoryDetailsScreenEvent
 import com.example.githubapp.feature.repositoryDetails.models.RepositoryDetailsVMParam
-import com.example.githubapp.feature.repositoryDetails.viewmodel.DetailsViewModel
+import com.example.githubapp.feature.repositoryDetails.viewmodel.RepositoryDetailsViewModel
 @Composable
 fun DetailsScreen(
     owner: String,
     repoName: String,
 ) {
-    val viewModel = hiltViewModel<DetailsViewModel, DetailsViewModel.RepositoryDetailsViewModelFactory> { factory ->
+    val viewModel = hiltViewModel<RepositoryDetailsViewModel, RepositoryDetailsViewModel.RepositoryDetailsViewModelFactory> { factory ->
         factory.create(
             RepositoryDetailsVMParam(owner, repoName)
         )
@@ -48,7 +48,7 @@ fun DetailsScreen(
                 modifier = Modifier
                     .padding(4.dp)
                     .clip(CircleShape)
-                    .clickable { viewModel.onEvent(DetailsScreenEvent.NavigateBack) }
+                    .clickable { viewModel.onEvent(RepositoryDetailsScreenEvent.NavigateBack) }
                     .padding(4.dp)
                     .size(30.dp)
             )
@@ -58,7 +58,7 @@ fun DetailsScreen(
                 modifier = Modifier
                     .padding(6.dp)
                     .clip(CircleShape)
-                    .clickable { viewModel.onEvent(DetailsScreenEvent.OnShareClicked) }
+                    .clickable { viewModel.onEvent(RepositoryDetailsScreenEvent.OnShareClicked) }
                     .padding(4.dp)
                     .size(25.dp)
             )

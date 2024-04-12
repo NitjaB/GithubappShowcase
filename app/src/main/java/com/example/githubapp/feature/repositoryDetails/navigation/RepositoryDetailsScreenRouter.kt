@@ -5,7 +5,7 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.example.githubapp.core.navigation.NavigationDestination
 
-object DetailsScreenRouter : NavigationDestination {
+object RepositoryDetailsScreenRouter : NavigationDestination {
 
     private const val REPOSITORY_DETAILS_SCREEN_ROOT = "repositoryDetails"
     const val OWNER_PARAM = "owner"

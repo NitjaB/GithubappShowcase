@@ -8,7 +8,7 @@ import com.example.githubapp.core.base.TIMEOUT_DELAY
 import com.example.githubapp.core.navigation.NavigationEvent
 import com.example.githubapp.core.navigation.Navigator
 import com.example.githubapp.domain.search.usecase.SearchForRepository
-import com.example.githubapp.feature.repositoryDetails.navigation.DetailsScreenRouter
+import com.example.githubapp.feature.repositoryDetails.navigation.RepositoryDetailsScreenRouter
 import com.example.githubapp.feature.search.model.SearchScreenEvent
 import com.example.githubapp.feature.search.model.SearchScreenEvent.onOpenFiltersClicked
 import com.example.githubapp.feature.search.model.SearchScreenEvent.onSearchTextChanged
@@ -72,7 +72,7 @@ class SearchViewModel @Inject constructor(
             is SearchScreenEvent.OnRepositoryClicked -> viewModelScope.launch {
                 navigator.emitDestination(
                     NavigationEvent.Destination(
-                        DetailsScreenRouter.creteRepositoryDetailsRoute(
+                        RepositoryDetailsScreenRouter.creteRepositoryDetailsRoute(
                             owner = event.owner,
                             repositoryName = event.repoName,
                         )

@@ -1,11 +1,11 @@
 package com.example.githubapp.domain.repository
-import com.example.githubapp.data.details.DetailsDatasource
-import com.example.githubapp.domain.details.mappers.DetailsMapper
+import com.example.githubapp.data.repositoryDetails.RepositoryDetailsDatasource
+import com.example.githubapp.domain.repository.mappers.DetailsMapper
 import com.example.githubapp.domain.helpers.toResult
 import javax.inject.Inject
 
 class RepositoriesRepository @Inject constructor(
-    private val datasource: DetailsDatasource,
+    private val datasource: RepositoryDetailsDatasource,
     private val mapper: DetailsMapper
 ) {
     suspend fun getRepositoryDetails(

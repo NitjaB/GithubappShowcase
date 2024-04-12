@@ -1,11 +1,11 @@
-package com.example.githubapp.data.details
+package com.example.githubapp.data.repositoryDetails
 
 import com.example.githubapp.data.models.RepositoryResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface DetailsApi {
+interface RepositoryDetailsApi {
     @GET("/repos/{owner}/{repo}")
     suspend fun getDetails(
         @Path("owner") owner:String,

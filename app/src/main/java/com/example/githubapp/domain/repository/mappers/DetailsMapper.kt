@@ -1,4 +1,4 @@
-package com.example.githubapp.domain.details.mappers
+package com.example.githubapp.domain.repository.mappers
 
 import com.example.githubapp.data.models.RepositoryResponse
 import com.example.githubapp.domain.models.AuthorInfo

@@ -1,10 +1,10 @@
-package com.example.githubapp.data.details
+package com.example.githubapp.data.repositoryDetails
 
 import com.example.githubapp.data.helpers.safeApiCall
 import javax.inject.Inject
 
-class DetailsDatasource @Inject constructor(
-    private val detailsApi: DetailsApi
+class RepositoryDetailsDatasource @Inject constructor(
+    private val detailsApi: RepositoryDetailsApi
 ) {
     suspend fun getRepositoryDetails(
         owner: String,
