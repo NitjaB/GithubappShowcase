@@ -1,7 +1,7 @@
 package com.example.githubapp.feature.search
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -21,10 +21,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.githubapp.R
 import com.example.githubapp.core.components.SimpleLazyColumn
-import com.example.githubapp.designSystem.theme.black
-import com.example.githubapp.designSystem.theme.white
 import com.example.githubapp.feature.search.components.RepositoryItem
 import com.example.githubapp.feature.search.components.SearchBar
+import com.example.githubapp.feature.search.model.SearchScreenEvent
 import com.example.githubapp.feature.search.model.SearchScreenEvent.onOpenFiltersClicked
 import com.example.githubapp.feature.search.model.SearchScreenEvent.onSearchTextChanged
 import com.example.githubapp.feature.search.viewmodel.SearchViewModel
@@ -55,7 +54,19 @@ fun SearchScreen(
             SimpleLazyColumn(
                 items = repositories,
                 key = { id },
-                uiItemBuilder = { repository -> RepositoryItem(repository) },
+                uiItemBuilder = { repository ->
+                    RepositoryItem(
+                        repository = repository,
+                        modifier = Modifier.clickable {
+                            viewModel.onEvent(
+                                SearchScreenEvent.OnRepositoryClicked(
+                                    owner = repository.author.username,
+                                    repoName = repository.name,
+                                )
+                            )
+                        }
+                    )
+                },
                 noItemsItem = { NoItems() },
                 modifier = Modifier.weight(1f, true),
                 itemSpacing = 2.dp,
