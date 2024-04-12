@@ -12,4 +12,17 @@ class DetailsDatasource @Inject constructor(
     ) = safeApiCall {
         detailsApi.getDetails(owner = owner, repo = repoName)
     }
+
+    suspend fun isStarred(
+        owner: String,
+        repoName: String
+    ) =
+        safeApiCall {
+            val response = detailsApi.isStarred(owner, repoName)
+            when (response.code()) {
+                204 -> true
+                404 -> false
+                else -> throw Throwable(response.code().toString())
+            }
+        }
 }
