@@ -36,4 +36,15 @@ class RepositoryDetailsDatasource @Inject constructor(
             else -> throw  Throwable(response.code().toString())
         }
     }
+
+    suspend fun unStar(
+        owner: String,
+        repoName: String
+    ) = safeApiCall {
+        val response = detailsApi.unStar(owner, repoName)
+        when(response.code()){
+            204 -> true
+            else -> throw  Throwable(response.code().toString())
+        }
+    }
 }
