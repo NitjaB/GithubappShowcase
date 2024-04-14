@@ -20,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.githubapp.R
+import com.example.githubapp.designSystem.theme.blue
 import com.example.githubapp.feature.repositoryDetails.components.RepositoryDetailsHeadline
 import com.example.githubapp.feature.repositoryDetails.models.RepositoryDetailsScreenEvent
 import com.example.githubapp.feature.repositoryDetails.models.RepositoryDetailsVMParam
@@ -56,6 +57,7 @@ fun DetailsScreen(
             )
             Icon(
                 painter = painterResource(id = R.drawable.ic_settings),
+                tint = blue,
                 contentDescription = stringResource(id = R.string.default_icon_content_description),
                 modifier = Modifier
                     .padding(6.dp)
