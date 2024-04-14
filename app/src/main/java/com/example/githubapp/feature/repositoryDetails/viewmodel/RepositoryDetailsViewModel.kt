@@ -83,16 +83,32 @@ class RepositoryDetailsViewModel @AssistedInject constructor(
         }
     }
 
-    private fun starRepository(){
+    private fun starOrUnStarRepository() {
         viewModelScope.launch {
-            getRepository.star(params.owner, params.repoName)
+            isStarring.update { true }
+            if (isStarredByUser.value) {
+                getRepository.unStar(params.owner, params.repoName).fold(
+                    {
+                        isStarring.update { false }
+                        isStarredByUser.update { false }
+                    },
+                    {
+                        isStarring.update { false }
+                    },
+                )
+            } else {
+                getRepository.star(params.owner, params.repoName).fold(
+                    {
+                        isStarring.update { false }
+                        isStarredByUser.update { true }
+                    },
+                    {
+                        isStarring.update { false }
+                    },
+                )
+            }
         }
-    }
 
-    private fun unStarRepository(){
-        viewModelScope.launch {
-            getRepository.unStar(params.owner, params.repoName)
-        }
     }
 
     override fun onEvent(event: RepositoryDetailsScreenEvent) {
@@ -104,6 +120,8 @@ class RepositoryDetailsViewModel @AssistedInject constructor(
             is RepositoryDetailsScreenEvent.OnShareClicked -> details.value.let { notNullDetails ->
                 systemCall.share(notNullDetails?.url ?: "")
             }
+
+            is RepositoryDetailsScreenEvent.OnStarButtonClicked -> starOrUnStarRepository()
         }
     }
 
