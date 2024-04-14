@@ -6,4 +6,8 @@ sealed interface RepositoryDetailsScreenEvent {
 
     data object OnShareClicked : RepositoryDetailsScreenEvent
 
+    data class OnStarButtonClicked(
+        val owner: String,
+        val repositoryName: String,
+    ) : RepositoryDetailsScreenEvent
 }
