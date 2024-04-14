@@ -34,12 +34,14 @@ class RepositoryDetailsViewModel @AssistedInject constructor(
 
     private val details = MutableStateFlow<Repository?>(null)
     private val isStarredByUser = MutableStateFlow(false)
+    private val isStarring = MutableStateFlow(false)
     private val isLoading = MutableStateFlow(true)
     private val isError = MutableStateFlow(false)
 
     val viewState = combine(
         details,
         isStarredByUser,
+        isStarring,
         isLoading,
         isError,
         ::RepositoryDetailsScreenState
