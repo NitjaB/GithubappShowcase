@@ -37,10 +37,12 @@ fun DetailsScreen(
     val viewState by viewModel.viewState.collectAsState()
     Column(
         horizontalAlignment = Alignment.Start,
+        modifier = Modifier.padding(top = 8.dp)
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
                 painter = painterResource(R.drawable.ic_arrow_left),
@@ -60,7 +62,7 @@ fun DetailsScreen(
                     .clip(CircleShape)
                     .clickable { viewModel.onEvent(RepositoryDetailsScreenEvent.OnShareClicked) }
                     .padding(4.dp)
-                    .size(25.dp)
+                    .size(20.dp)
             )
         }
         viewState.details?.let { notNullRepository ->
