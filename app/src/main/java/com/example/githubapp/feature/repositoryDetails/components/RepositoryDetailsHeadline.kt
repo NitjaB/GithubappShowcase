@@ -82,24 +82,24 @@ fun RepositoryDetailsHeadline(
                 )
             }
         }
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(top = 16.dp)
-        ) {
-            Icon(
-                painter = painterResource(
-                    id = R.drawable.ic_url
-                ),
-                contentDescription = stringResource(id = R.string.default_image_content_description),
-                tint = gray500
-            )
-            Text(
-                text = repository.url ?: "",
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 1,
-                modifier = Modifier.padding(end = 24.dp, start = 4.dp),
-                style = MaterialTheme.typography.titleMedium
-            )
+        if(!repository.url.isNullOrEmpty()) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(top = 16.dp)
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_url),
+                    contentDescription = stringResource(id = R.string.default_image_content_description),
+                    tint = gray500
+                )
+                Text(
+                    text = repository.url,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1,
+                    modifier = Modifier.padding(end = 24.dp, start = 4.dp),
+                    style = MaterialTheme.typography.titleMedium
+                )
+            }
         }
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -143,7 +143,7 @@ fun RepositoryDetailsHeadline(
                     )
                 )
             },
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.surface),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.surface,),
             shape = RoundedCornerShape(4.dp)
         ) {
             if (!isStaredLoading) {
@@ -161,7 +161,6 @@ fun RepositoryDetailsHeadline(
                 )
             } else {
                 CircularProgressIndicator(
-                    color = gray500,
                     modifier = Modifier
                         .padding(end = 6.dp)
                         .size(16.dp)
