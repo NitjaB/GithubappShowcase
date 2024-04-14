@@ -27,12 +27,14 @@ import com.example.githubapp.core.components.Image
 import com.example.githubapp.designSystem.theme.gray500
 import com.example.githubapp.domain.models.AuthorInfo
 import com.example.githubapp.domain.search.models.Repository
+import com.example.githubapp.feature.repositoryDetails.models.RepositoryDetailsScreenEvent.OnStarButtonClicked
 
 @Composable
 fun RepositoryDetailsHeadline(
     repository: Repository,
     isStarred: Boolean = false,
     isStaredLoading: Boolean = false,
+    interactionHandler: (OnStarButtonClicked) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -133,7 +135,14 @@ fun RepositoryDetailsHeadline(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
-            onClick = { /*TODO*/ },
+            onClick = {
+                interactionHandler(
+                    OnStarButtonClicked(
+                        repository.author.username,
+                        repository.name,
+                    )
+                )
+            },
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.surface),
             shape = RoundedCornerShape(4.dp)
         ) {
@@ -152,7 +161,8 @@ fun RepositoryDetailsHeadline(
                 )
             } else {
                 CircularProgressIndicator(
-                    Modifier
+                    color = gray500,
+                    modifier = Modifier
                         .padding(end = 6.dp)
                         .size(16.dp)
                 )
@@ -182,7 +192,8 @@ private fun RepositoryDetailsHeadlinePreview() {
             staredTimes = 1900,
             forkNumber = 150,
             url = "www.github.com"
-        )
+        ),
+        interactionHandler = {},
     )
 }
 
@@ -203,8 +214,8 @@ private fun RepositoryDetailsHeadlineLongPreview() {
             staredTimes = 1900,
             forkNumber = 150,
             url = "cghdsjgcdhyugdyhukagDHSKUGYFDUSGYDGSYAKHJDIGHUfgfdghgfhdghfgdhfgdhj"
-
-        )
+        ),
+        interactionHandler = {},
     )
 }
 
@@ -227,5 +238,6 @@ private fun RepositoryDetailsLoadingStarredHeadlineLongPreview() {
             url = "cghdsjgcdhyugdyhukagDHSKUGYFDUSGYDGSYAKHJDIGHUfgfdghgfhdghfgdhfgdhj"
         ),
         isStaredLoading = true,
+        interactionHandler = {},
     )
 }
